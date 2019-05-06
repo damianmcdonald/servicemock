@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <Property name="basePath">${env:SERVICEMOCK_LOGS}</Property>
+        <Property name="appName">${env:SERVICEMOCK_NAME}</Property>
+    </Properties>
+    <Appenders>
+        <RollingFile
+                name="DefaultFileLogger"
+                fileName="${basePath}/${appName}.log"
+                filePattern="${basePath}/${appName}-%d{MM-dd-yyyy}-%i.log.gz"
+                ignoreExceptions="false">
+            <PatternLayout>
+                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %m%n%ex</pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="5" />
+        </RollingFile>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%-5p %d [%t] %c: %m%n"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+
+        <!-- App specific logging -->
+        <AsyncLogger name="com.github.damianmcdonald.servicemock" level="DEBUG"/>
+
+        <AsyncLogger name="org.springframework" level="INFO"/>
+
+        <AsyncRoot level="DEBUG">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="DefaultFileLogger"/>
+        </AsyncRoot>
+    </Loggers>
+
+</Configuration>

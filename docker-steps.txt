@@ -1,0 +1,15 @@
+docker build -t servicemock .
+
+docker run --name servicemock -i -v $PWD/config/logs:/app/logs servicemock
+
+# connect to container
+docker exec -it 9d01af2c7598 /bin/sh
+
+docker ps -all
+
+docker rm container_id
+
+docker images
+
+# delete an image
+docker rmi <IMAGE ID>
