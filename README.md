@@ -35,7 +35,9 @@ docker build -t servicemock .
 4) Run the Docker image:
 
 ```
-docker run --name servicemock -i -v $PWD/config/logs:/app/logs servicemock
+docker run -i -v $PWD/config/logs:/app/logs \
+    -e SERVICEMOCK_LOGS=/app/logs \
+    --name servicemock servicemock
 ```
 
 5) Check the directory `$PWD/config/logs` for the generation of a log files with different error levels and stacktraces.
