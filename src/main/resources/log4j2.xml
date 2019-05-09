@@ -6,17 +6,43 @@
     </Properties>
     <Appenders>
         <RollingFile
-                name="DefaultFileLogger"
-                fileName="${basePath}/${appName}.log"
-                filePattern="${basePath}/${appName}-%d{MM-dd-yyyy}-%i.log.gz"
+                name="FirstMockFileLogger"
+                fileName="${basePath}/${appName}-FRONTOFFICE.log"
+                filePattern="${basePath}/${appName}-FRONTOFFICE-%d{MM-dd-yyyy}-%i.log.gz"
                 ignoreExceptions="false">
             <PatternLayout>
                 <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %m%n%ex</pattern>
             </PatternLayout>
             <Policies>
-                <SizeBasedTriggeringPolicy size="10MB" />
+                <SizeBasedTriggeringPolicy size="10MB"/>
             </Policies>
-            <DefaultRolloverStrategy max="5" />
+            <DefaultRolloverStrategy max="5"/>
+        </RollingFile>
+        <RollingFile
+                name="SecondMockFileLogger"
+                fileName="${basePath}/${appName}-BACKOFFICE.log"
+                filePattern="${basePath}/${appName}-BACKOFFICE-%d{MM-dd-yyyy}-%i.log.gz"
+                ignoreExceptions="false">
+            <PatternLayout>
+                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %m%n%ex</pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5"/>
+        </RollingFile>
+        <RollingFile
+                name="ThirdMockFileLogger"
+                fileName="${basePath}/${appName}-CTI.log"
+                filePattern="${basePath}/${appName}-CTI-%d{MM-dd-yyyy}-%i.log.gz"
+                ignoreExceptions="false">
+            <PatternLayout>
+                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %m%n%ex</pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5"/>
         </RollingFile>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%-5p %d [%t] %c: %m%n"/>
@@ -26,14 +52,20 @@
     <Loggers>
 
         <!-- App specific logging -->
-        <AsyncLogger name="com.github.damianmcdonald.servicemock" level="DEBUG"/>
+        <AsyncLogger name="com.github.damianmcdonald.servicemock">
+            <AppenderRef ref="FirstMockFileLogger" level="DEBUG"/>
+            <AppenderRef ref="SecondMockFileLogger" level="DEBUG"/>
+            <AppenderRef ref="ThirdMockFileLogger" level="DEBUG"/>
+        </AsyncLogger>
 
         <AsyncLogger name="org.springframework" level="INFO"/>
 
         <AsyncRoot level="DEBUG">
-            <AppenderRef ref="Console"/>
-            <AppenderRef ref="DefaultFileLogger"/>
+            <AppenderRef ref="FirstMockFileLogger"/>
+            <AppenderRef ref="SecondMockFileLogger"/>
+            <AppenderRef ref="ThirdMockFileLogger"/>
         </AsyncRoot>
+
     </Loggers>
 
 </Configuration>
