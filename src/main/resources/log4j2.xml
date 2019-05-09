@@ -52,11 +52,7 @@
     <Loggers>
 
         <!-- App specific logging -->
-        <AsyncLogger name="com.github.damianmcdonald.servicemock">
-            <AppenderRef ref="FirstMockFileLogger" level="DEBUG"/>
-            <AppenderRef ref="SecondMockFileLogger" level="DEBUG"/>
-            <AppenderRef ref="ThirdMockFileLogger" level="DEBUG"/>
-        </AsyncLogger>
+
 
         <AsyncLogger name="org.springframework" level="INFO"/>
 
