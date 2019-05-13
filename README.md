@@ -44,7 +44,7 @@ docker run -i \
     servicemock
 ```
 
-5) Check the directory `$PWD/logs` for the generation of a log files with different error levels and stacktraces.
+5) Check the directory `$PWD/logs` for the generation of log files with different error levels and stacktraces.
 
 ```bash
 [INFO ] 2019-05-06 11:42:32.643 [main] ServicemockApplication - Starting ServicemockApplication v1.0.0 on adc6768e96bd with PID 1 (/app/servicemock-1.0.0.jar started by root in /)
