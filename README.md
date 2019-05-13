@@ -35,12 +35,16 @@ docker build -t servicemock .
 4) Run the Docker image:
 
 ```
-docker run -i -v $PWD/config/logs:/app/logs \
+docker run -i \
+    -v $PWD/logs:/app/logs \
+    -v $PWD/config:/app/config \
     -e SERVICEMOCK_LOGS=/app/logs \
-    --name servicemock servicemock
+    -e SERVICEMOCK_NAME=servicemock \
+    -e UNIQUE_ID=$HOSTNAME \
+    servicemock
 ```
 
-5) Check the directory `$PWD/config/logs` for the generation of a log files with different error levels and stacktraces.
+5) Check the directory `$PWD/logs` for the generation of a log files with different error levels and stacktraces.
 
 ```bash
 [INFO ] 2019-05-06 11:42:32.643 [main] ServicemockApplication - Starting ServicemockApplication v1.0.0 on adc6768e96bd with PID 1 (/app/servicemock-1.0.0.jar started by root in /)
