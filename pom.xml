@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.github.damianmcdonald</groupId>
 	<artifactId>servicemock</artifactId>
-	<version>1.0.3-RELEASE</version>
+	<version>1.0.4-RELEASE</version>
 	<name>servicemock</name>
 	<description>Spring Boot app that generates logs with fake data</description>
 

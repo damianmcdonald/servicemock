@@ -40,7 +40,6 @@ docker run -i \
     -v $PWD/config:/app/config \
     -e SERVICEMOCK_LOGS=/app/logs \
     -e SERVICEMOCK_NAME=servicemock \
-    -e UNIQUE_ID=$HOSTNAME \
     servicemock
 ```
 
